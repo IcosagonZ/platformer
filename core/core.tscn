@@ -70,8 +70,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_evk0v")
 theme_override_styles/fill = SubResource("StyleBoxFlat_73hob")
+max_value = 200.0
 step = 1.0
-value = 20.0
+value = 100.0
 show_percentage = false
 
 [node name="Spacer_1" type="VSeparator" parent="HUD/Container/Container"]
@@ -81,6 +82,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_evk0v")
 
 [node name="Button_Reload" type="Button" parent="HUD/Container/Container"]
 layout_mode = 2
+focus_mode = 0
 icon = ExtResource("1_mdl8m")
 flat = true
 

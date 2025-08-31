@@ -18,19 +18,21 @@ extends CharacterBody2D
 var energy_float:float  = 1.0
 var energy_inuse = false
 
-@export var energy_max:float = 100
-@export var energy_regen = 2
+@export var energy_max:float = 200
+@export var energy_regen_quickpoint:float = 150
+@export var energy_regen:float = 2
+@export var energy_regen_quick:float = 5
 
-@export var energy_jump = 15
-@export var energy_sprint = 1
-@export var energy_dash = 10
-@export var energy_down = 1
+@export var energy_jump:float = 30
+@export var energy_sprint:float = 2
+@export var energy_dash:float = 5
+@export var energy_down:float = 1
 
 # Internal variables for movement logic
 var _current_speed = 0
 var _jumping = false
 
-func energy_deplete(deplete) -> bool:
+func energy_deplete(deplete:float) -> bool:
 	if(energy-deplete<0):
 		return false
 	else:
@@ -39,10 +41,10 @@ func energy_deplete(deplete) -> bool:
 
 func energy_replenish():
 	if(!energy_inuse):
-		if(energy<=95):
-			energy+=energy_regen
-		elif(energy>95 and energy<100):
-			energy = energy_max
+		if(energy<=energy_regen_quick):
+			energy += energy_regen
+		elif(energy>energy_regen_quick and energy<energy_max):
+			energy += energy_regen_quick
 
 func energy_float_calculate():
 	energy_float = energy / energy_max
@@ -87,8 +89,8 @@ func _physics_process(delta: float) -> void:
 
 	if(Input.is_action_pressed("move_jump")):
 		if(self.is_on_floor()): # jump only if player is on a floor
-			energy_deplete(energy_jump)
-			velocity.y = -(jump_height*energy_float)
+			if(energy_deplete(energy_jump)):
+				velocity.y = -(jump_height*energy_float)
 
 	# set movement speed to walking speed or sprinting speed
 	if(Input.is_action_pressed("move_sprint")):

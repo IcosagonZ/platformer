@@ -1,5 +1,9 @@
 extends CanvasLayer
 
+# Player variables
+var player_energy:float = 100.0
+var hud_energy:float = 100.0
+
 func menu_hideall() -> void:
 	$GameOver.hide()
 	$Pause.hide()
@@ -37,11 +41,17 @@ func button_resume_pressed() -> void:
 func button_quit_pressed() -> void:
 	game_quit()
 
-func hud_update_energy(value) -> void:
-	$HUD/Container/Container/Progress_Energy.set_value_no_signal(float(value))
+func hud_update_energy(value:float) -> void:
+	player_energy = value
+	#$HUD/Container/Container/Progress_Energy.set_value_no_signal(float(value))
 
 func _ready() -> void:
 	menu_hideall()
+
+func _process(delta: float) -> void:
+	if(get_tree().paused==false):
+		hud_energy = lerp(hud_energy, player_energy, 0.1)
+		$HUD/Container/Container/Progress_Energy.set_value_no_signal(hud_energy)
 
 func _input(event: InputEvent) -> void:
 	if(event.is_action_pressed("game_pause")):
