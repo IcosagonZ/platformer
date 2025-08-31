@@ -1,0 +1,55 @@
+extends CanvasLayer
+
+func menu_hideall() -> void:
+	$GameOver.hide()
+	$Pause.hide()
+
+func game_pause() -> void:
+	get_tree().paused = true
+
+func game_unpause() -> void:
+	get_tree().paused = false
+
+func game_quit() -> void:
+	get_tree().quit()
+
+func menu_gameover() -> void:
+	$GameOver.show()
+
+func menu_pause() -> void:
+	$HUD.hide()
+	$Pause.show()
+	game_pause()
+
+func button_reload_pressed() -> void:
+	menu_hideall()
+	get_tree().reload_current_scene()
+	game_unpause()
+
+func button_pause_pressed() -> void:
+	menu_pause()
+
+func button_resume_pressed() -> void:
+	$Pause.hide()
+	$HUD.show()
+	game_unpause()
+
+func button_quit_pressed() -> void:
+	game_quit()
+
+func hud_update_energy(value) -> void:
+	$HUD/Container/Container/Progress_Energy.set_value_no_signal(float(value))
+
+func _ready() -> void:
+	menu_hideall()
+
+func _input(event: InputEvent) -> void:
+	if(event.is_action_pressed("game_pause")):
+		if(get_tree().paused):
+			button_resume_pressed()
+		else:
+			button_pause_pressed()
+	if(event.is_action_pressed("game_quit")):
+		game_quit()
+	if(event.is_action_pressed("game_retry")):
+		button_reload_pressed()

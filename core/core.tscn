@@ -1,0 +1,202 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8n85qoeomnpm"]
+
+[ext_resource type="Script" uid="uid://ihq2hvgpybno" path="res://core/core.gd" id="1_dl57r"]
+[ext_resource type="Texture2D" uid="uid://culy37j84g4kk" path="res://core/icons/refresh.svg" id="1_mdl8m"]
+[ext_resource type="Texture2D" uid="uid://dyoel2guf7ov0" path="res://core/icons/pause.svg" id="2_evk0v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evk0v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evk0v"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73hob"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.270222, 0.270222, 0.270222, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dl57r"]
+
+[node name="Core" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_dl57r")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="MarginContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Container" type="HBoxContainer" parent="HUD/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button_Pause" type="Button" parent="HUD/Container/Container"]
+layout_mode = 2
+icon = ExtResource("2_evk0v")
+flat = true
+
+[node name="Spacer_0" type="VSeparator" parent="HUD/Container/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_evk0v")
+
+[node name="Progress_Energy" type="ProgressBar" parent="HUD/Container/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_evk0v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_73hob")
+step = 1.0
+value = 20.0
+show_percentage = false
+
+[node name="Spacer_1" type="VSeparator" parent="HUD/Container/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_evk0v")
+
+[node name="Button_Reload" type="Button" parent="HUD/Container/Container"]
+layout_mode = 2
+icon = ExtResource("1_mdl8m")
+flat = true
+
+[node name="Pause" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="Container" type="VBoxContainer" parent="Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Pause/Container"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 50
+text = "Game paused"
+horizontal_alignment = 1
+
+[node name="Container" type="HBoxContainer" parent="Pause/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button_Quit" type="Button" parent="Pause/Container/Container"]
+layout_mode = 2
+text = "Quit"
+
+[node name="Button_Settings" type="Button" parent="Pause/Container/Container"]
+visible = false
+layout_mode = 2
+text = "Settings"
+
+[node name="Button_Retry" type="Button" parent="Pause/Container/Container"]
+layout_mode = 2
+text = "Retry"
+
+[node name="Button_Resume" type="Button" parent="Pause/Container/Container"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Spacer" type="HSeparator" parent="Pause/Container"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dl57r")
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="Container" type="VBoxContainer" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="GameOver/Container"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 50
+text = "Game over"
+horizontal_alignment = 1
+
+[node name="Container" type="HBoxContainer" parent="GameOver/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button_Retry" type="Button" parent="GameOver/Container/Container"]
+layout_mode = 2
+text = "Retry"
+
+[node name="Button_Quit" type="Button" parent="GameOver/Container/Container"]
+layout_mode = 2
+text = "Quit"
+
+[node name="Spacer" type="HSeparator" parent="GameOver/Container"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dl57r")
+
+[connection signal="pressed" from="HUD/Container/Container/Button_Pause" to="." method="button_pause_pressed"]
+[connection signal="pressed" from="HUD/Container/Container/Button_Reload" to="." method="button_reload_pressed"]
+[connection signal="pressed" from="Pause/Container/Container/Button_Quit" to="." method="button_quit_pressed"]
+[connection signal="pressed" from="Pause/Container/Container/Button_Retry" to="." method="button_reload_pressed"]
+[connection signal="pressed" from="Pause/Container/Container/Button_Resume" to="." method="button_resume_pressed"]
+[connection signal="pressed" from="GameOver/Container/Container/Button_Retry" to="." method="button_reload_pressed"]
+[connection signal="pressed" from="GameOver/Container/Container/Button_Quit" to="." method="button_quit_pressed"]
