@@ -226,17 +226,18 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_symyc"]
-size = Vector2(30, 52.5)
+size = Vector2(60, 113)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_abrql")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_8fjmc")
 animation = &"jump_start"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
+position = Vector2(-5, 7.5)
 shape = SubResource("RectangleShape2D_symyc")
 
 [node name="Camera" type="Camera2D" parent="."]

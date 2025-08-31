@@ -6,8 +6,8 @@ extends CharacterBody2D
 @export var move_speed_run = 300
 @onready var move_speed_current = move_speed_walk
 
-@export var jump_height = 300
-@export var gravity = 300
+@export var jump_height = 400
+@export var gravity = 400
 
 # Internal variables for movement logic
 var _current_speed = 0
