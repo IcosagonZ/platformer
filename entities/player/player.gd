@@ -1,6 +1,9 @@
 # Player.gd
 extends CharacterBody2D
 
+# Player inventory & collectible
+@export var player_inventory = []
+
 # Movement speeds
 @export var move_speed_walk = 200
 @export var move_speed_run = 300
@@ -102,6 +105,13 @@ func _physics_process(delta: float) -> void:
 				move_speed_current = move_speed_dash
 	else:
 		move_speed_current = move_speed_walk
+
+func _input(event: InputEvent) -> void:
+	if(event.is_action_pressed("action_pickup")):
+		for item in core.player_inrange:
+			player_inventory.append([item.object_name, item.object_id])
+			core.player_inrange.erase(item)
+			item.destroy()
 
 func timer_timeout() -> void:
 	energy_replenish()

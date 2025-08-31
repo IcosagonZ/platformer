@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://klt3vk0hkosk"]
+[gd_scene load_steps=6 format=4 uid="uid://klt3vk0hkosk"]
 
 [ext_resource type="Texture2D" uid="uid://bcfw8mvxfgmvp" path="res://tilemaps/abstract.png" id="1_1f5di"]
 [ext_resource type="PackedScene" uid="uid://di7wuauygl5fc" path="res://entities/player/player.tscn" id="2_ido5y"]
+[ext_resource type="PackedScene" uid="uid://bpf1r68drr7il" path="res://entities/collectibles/key.tscn" id="3_ido5y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kx5p7"]
 texture = ExtResource("1_1f5di")
@@ -1409,3 +1410,6 @@ tile_set = SubResource("TileSet_p2ku2")
 
 [node name="Player" parent="." instance=ExtResource("2_ido5y")]
 position = Vector2(575, 430)
+
+[node name="Key" parent="." instance=ExtResource("3_ido5y")]
+position = Vector2(786, 459)

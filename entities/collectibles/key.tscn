@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpf1r68drr7il"]
+
+[ext_resource type="Script" uid="uid://b2m6iqrk02wqx" path="res://entities/collectibles/collectible.gd" id="1_3q82x"]
+[ext_resource type="Texture2D" uid="uid://bcfw8mvxfgmvp" path="res://tilemaps/abstract.png" id="1_urchi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3q82x"]
+atlas = ExtResource("1_urchi")
+region = Rect2(1688, 408, 80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8yre"]
+size = Vector2(200, 200)
+
+[node name="Key" type="Area2D" node_paths=PackedStringArray("label")]
+collision_mask = 2
+script = ExtResource("1_3q82x")
+label = NodePath("Label")
+object_name = "Key"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_3q82x")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w8yre")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -40.0
+offset_top = -60.0
+offset_right = 43.0
+offset_bottom = -37.0
+text = "Pickup key"
+
+[connection signal="body_entered" from="." to="." method="body_entered"]
+[connection signal="body_exited" from="." to="." method="body_exited"]

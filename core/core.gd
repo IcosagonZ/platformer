@@ -4,6 +4,9 @@ extends CanvasLayer
 var player_energy:float = 100.0
 var hud_energy:float = 100.0
 
+# Player inventory and collectible variables
+@export var player_inrange = []
+
 func menu_hideall() -> void:
 	$GameOver.hide()
 	$Pause.hide()
@@ -44,6 +47,12 @@ func button_quit_pressed() -> void:
 func hud_update_energy(value:float) -> void:
 	player_energy = value
 	#$HUD/Container/Container/Progress_Energy.set_value_no_signal(float(value))
+
+func player_add_inrange(object):
+	player_inrange.append(object)
+
+func player_remove_inrange(object):
+	player_inrange.erase(object)
 
 func _ready() -> void:
 	menu_hideall()
