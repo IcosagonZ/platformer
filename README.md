@@ -3,7 +3,7 @@ A simple 2D platformer game made in Godot
 
 ## Screenshots
 <p align="center">
-    <img src="misc/screenshots/screenshot0.png" alt="Screenshot 0" width="200"/>
+    <img src="misc/screenshots/screenshot0.png" alt="Screenshot 0"/>
 </p>
 
 ## Features
